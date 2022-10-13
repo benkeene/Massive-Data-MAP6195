@@ -1,9 +1,11 @@
-import matplotlib
-import numpy
-import scipy
+import matplotlib.pyplot as plt
+import numpy as np
 import sklearn
+import scipy
 
+print("Hello world")
 
-for a = b
-
-
+x = [1, 2, 3]
+y = np.array([[1,2], [3,4], [5,6]])
+plt.plot(x,y)
+plt.show()

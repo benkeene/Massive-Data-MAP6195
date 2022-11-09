@@ -24,10 +24,39 @@ from sklearn.svm import SVC
 import numpy as np
 
 
+def mesh_dataset(dataset):
+    x_1 = dataset[:, 0]
+    x_2 = dataset[:, 1]
+
+    x_1, x_2 = np.meshgrid(np.linspace(
+        x_1.min()-.5, x_1.max()+.5, 20), np.linspace(x_2.min()-.5, x_2.max()+.5, 20))
+
+    return [x_1.ravel(), x_2.ravel()]
+
+
+def classify_moons(dataset, labels, kernel_choice, C_choice, cmap_choice, *gamma_choice):
+    mesh = mesh_dataset(dataset)
+
+    xi = mesh[0]
+    yi = mesh[1]
+
+    cmap = plt.get_cmap(cmap_choice, 3)
+
+    if kernel_choice == "linear":
+        clf = SVC(kernel="linear", C=C_choice)
+    elif kernel_choice == "rbf":
+        clf = SVC(kernel="rbf", C=C_choice, gamma=gamma_choice)
+
+    clf.fit(dataset, labels)
+    pred = clf.predict(np.c_mesh)
+
+
 plt.figure(figsize=(5, 5))
 plt.subplots_adjust(bottom=0.05, top=0.9, left=0.05, right=0.95)
 
 X1, Y1 = make_moons(100, noise=0.1)
+x2, y2 = np.meshgrid(np.linspace(X1[:, 0].min(
+)-.5, X1[:, 0].max()+.5, 20), np.linspace(X1[:, 1].min()-.5, X1[:, 1].max()+.5, 20))
 cmap = plt.get_cmap('Spectral', 3)
 
 
@@ -37,8 +66,6 @@ clf = SVC(kernel='linear', C=1.0)
 
 clf.fit(X1, Y1)
 
-x2, y2 = np.meshgrid(np.linspace(X1[:, 0].min()-.5, X1[:, 0].max()+.5, 20),
-                     np.linspace(X1[:, 1].min()-.5, X1[:, 1].max()+.5, 20))
 
 pred = clf.predict(np.c_[x2.ravel(), y2.ravel()])
 
@@ -56,6 +83,13 @@ plt.contourf(x2, y2, pred.reshape(x2.shape),
 
 plt.title("linear, C = 1.0")
 
+""" """  """ """
+
+""" """  """ """
+
+""" """  """ """
+
+""" """  """ """
 
 plt.subplot(222)
 

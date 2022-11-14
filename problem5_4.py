@@ -79,6 +79,7 @@ plt.scatter(X1[:, 0], X1[:, 1], c=Y1, s=50, cmap=cmap,
 plt.contourf(x2, y2, pred.reshape(x2.shape),
              cmap=cmap, alpha=0.6, levels=2, zorder=0)
 
+
 #plt.legend(ncol=2, loc="lower center", bbox_to_anchor=(0.5,1.01))
 
 plt.title("linear, C = 1.0")

@@ -31,4 +31,4 @@ def plot_color_gradients(category, cmap_list):
     cmaps[category] = cmap_list
 
     plot_color_gradients('Perceptually Uniform Sequential',
-                     ['viridis', 'plasma', 'inferno', 'magma', 'cividis'])
+                         ['viridis', 'plasma', 'inferno', 'magma', 'cividis'])
